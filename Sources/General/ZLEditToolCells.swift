@@ -27,8 +27,17 @@ import UIKit
 // MARK: Edit tool cell
 
 class ZLEditToolCell: UICollectionViewCell {
+    
     var toolType: ZLImageEditorConfiguration.EditTool = .draw {
         didSet {
+            
+            let config = ZLImageEditorConfiguration.default()
+            if let custom = config.toolIcon(for: toolType) {
+                icon.image = custom.normal
+                icon.highlightedImage = custom.selected
+                return
+            }
+            
             switch toolType {
             case .draw:
                 icon.image = .zl.getImage("zl_drawLine")
@@ -52,12 +61,44 @@ class ZLEditToolCell: UICollectionViewCell {
                 icon.image = .zl.getImage("zl_adjust")
                 icon.highlightedImage = .zl.getImage("zl_adjust_selected")
             }
+            
             if let color = UIColor.zl.toolIconHighlightedColor {
-                icon.highlightedImage = icon.highlightedImage?
-                    .zl.fillColor(color)
+                icon.highlightedImage = icon.highlightedImage?.zl.fillColor(color)
             }
         }
     }
+    
+//    var toolType: ZLImageEditorConfiguration.EditTool = .draw {
+//        didSet {
+//            switch toolType {
+//            case .draw:
+//                icon.image = .zl.getImage("zl_drawLine")
+//                icon.highlightedImage = .zl.getImage("zl_drawLine_selected")
+//            case .clip:
+//                icon.image = .zl.getImage("zl_clip")
+//                icon.highlightedImage = .zl.getImage("zl_clip")
+//            case .imageSticker:
+//                icon.image = .zl.getImage("zl_imageSticker")
+//                icon.highlightedImage = .zl.getImage("zl_imageSticker")
+//            case .textSticker:
+//                icon.image = .zl.getImage("zl_textSticker")
+//                icon.highlightedImage = .zl.getImage("zl_textSticker")
+//            case .mosaic:
+//                icon.image = .zl.getImage("zl_mosaic")
+//                icon.highlightedImage = .zl.getImage("zl_mosaic_selected")
+//            case .filter:
+//                icon.image = .zl.getImage("zl_filter")
+//                icon.highlightedImage = .zl.getImage("zl_filter_selected")
+//            case .adjust:
+//                icon.image = .zl.getImage("zl_adjust")
+//                icon.highlightedImage = .zl.getImage("zl_adjust_selected")
+//            }
+//            if let color = UIColor.zl.toolIconHighlightedColor {
+//                icon.highlightedImage = icon.highlightedImage?
+//                    .zl.fillColor(color)
+//            }
+//        }
+//    }
     
     lazy var icon = UIImageView(frame: contentView.bounds)
     

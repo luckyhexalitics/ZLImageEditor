@@ -224,6 +224,9 @@ class ViewController: UIViewController {
             .fontChooserContainerView(FontChooserContainerView())
             .clipRatios(ZLImageClipRatio.all)
             .toolsIconSize(50)
+//            .setToolIcon(.draw,
+//                           normal: UIImage(named: "my_draw"),
+//                           selected: UIImage(named: "my_draw_selected"))
             // Custom filter
 //            .filters = [.normal]
     }

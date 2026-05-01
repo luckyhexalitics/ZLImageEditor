@@ -326,3 +326,32 @@ public extension ZLImageClipRatio {
 
     @objc func show(in view: UIView)
 }
+
+public extension ZLImageEditorConfiguration {
+    
+    struct ToolIcon {
+        public var normal: UIImage?
+        public var selected: UIImage?
+        
+        public init(normal: UIImage?, selected: UIImage?) {
+            self.normal = normal
+            self.selected = selected
+        }
+    }
+    
+    private struct Holder {
+        static var icons: [EditTool: ToolIcon] = [:]
+    }
+    
+    @discardableResult
+    func setToolIcon(_ type: EditTool,
+                     normal: UIImage?,
+                     selected: UIImage?) -> Self {
+        Holder.icons[type] = ToolIcon(normal: normal, selected: selected)
+        return self
+    }
+    
+    func toolIcon(for type: EditTool) -> ToolIcon? {
+        return Holder.icons[type]
+    }
+}
