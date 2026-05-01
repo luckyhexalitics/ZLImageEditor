@@ -118,4 +118,10 @@ public extension ZLImageEditorConfiguration {
         showClipDirectlyIfOnlyHasClipTool = value
         return self
     }
+    
+    @discardableResult
+    func toolsIconSize(_ size: CGFloat) -> ZLImageEditorConfiguration {
+        toolsIconSize = size
+        return self
+    }
 }

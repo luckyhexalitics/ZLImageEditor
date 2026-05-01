@@ -223,6 +223,7 @@ class ViewController: UIViewController {
             .imageStickerContainerView(ImageStickerContainerView())
             .fontChooserContainerView(FontChooserContainerView())
             .clipRatios(ZLImageClipRatio.all)
+            .toolsIconSize(50)
             // Custom filter
 //            .filters = [.normal]
     }

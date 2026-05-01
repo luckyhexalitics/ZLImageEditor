@@ -212,7 +212,8 @@ open class ZLEditImageViewController: UIViewController {
     
     open lazy var editToolCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 30, height: 30)
+        let size = ZLImageEditorConfiguration.default().toolsIconSize
+        layout.itemSize = CGSize(width: size, height: size)
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 20
         layout.scrollDirection = .horizontal
@@ -596,12 +597,12 @@ open class ZLEditImageViewController: UIViewController {
         )
         
         let toolY: CGFloat = 95
-        
-        let doneBtnH = ZLImageEditorLayout.bottomToolBtnH
+        let size = ZLImageEditorConfiguration.default().toolsIconSize
+        let doneBtnH = size + 4
         let doneBtnW = localLanguageTextValue(.editFinish).zl.boundingRect(font: ZLImageEditorLayout.bottomToolTitleFont, limitSize: CGSize(width: CGFloat.greatestFiniteMagnitude, height: doneBtnH)).width + 20
         doneBtn.frame = CGRect(x: view.zl.width - 20 - doneBtnW, y: toolY - 2, width: doneBtnW, height: doneBtnH)
         
-        editToolCollectionView.frame = CGRect(x: 20, y: toolY, width: view.zl.width - 20 - 20 - doneBtnW - 20, height: 30)
+        editToolCollectionView.frame = CGRect(x: 20, y: toolY, width: view.zl.width - 20 - 20 - doneBtnW - 20, height: size)
         
         if !drawPaths.isEmpty {
             drawLine()

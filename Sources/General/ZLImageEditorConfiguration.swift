@@ -68,6 +68,10 @@ public class ZLImageEditorConfiguration: NSObject {
         }
     }
     
+    /// The size of the tool icons displayed in the bottom toolbar.
+    /// Default value is 30 points. Applies to all tool options like draw, clip, image sticker etc
+    @objc public var toolsIconSize: CGFloat = 30
+    
     private var pri_drawColors = ZLImageEditorConfiguration.defaultColors
     /// Draw colors for image editor.
     @objc public var drawColors: [UIColor] {
